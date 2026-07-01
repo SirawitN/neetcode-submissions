@@ -1,0 +1,24 @@
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+
+func hasCycle(head *ListNode) bool {
+	if head==nil || head.Next==nil {
+		return false
+	}
+
+	slowPtr, fastPtr := head, head
+	for fastPtr!=nil && fastPtr.Next!=nil {
+		slowPtr = slowPtr.Next
+		fastPtr = fastPtr.Next.Next
+
+		if slowPtr==fastPtr {
+			return true
+		}
+	}
+	return false
+}
